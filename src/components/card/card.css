@@ -1,0 +1,25 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #7c7a7a;
+    color: #f2f2f2;
+    width: 350px;
+    height: 200px;
+    border-radius: 7px;
+}
+
+.card__text {
+    height: 170px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.card__img {
+    position: relative;
+    left: -5px;
+    height: 150px;
+    border-radius: 7px;
+}
