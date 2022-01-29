@@ -1,9 +1,12 @@
 import React from 'react';
+import Row from '../row';
 
 const App = () => {
     return(
         <div>
-            <h1>Hello, PIDR</h1>
+            <Row />
+            <Row />
+            <Row />
         </div>
     );
 }
