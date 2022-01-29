@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import './card.css';
 
 const Card = () => {
+    const [name, setName] = useState('');
+    const [image, setImage] = useState('');
+
     return(
         <div className="card">
             <img src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" 
