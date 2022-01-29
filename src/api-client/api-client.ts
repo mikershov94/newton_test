@@ -1,30 +1,21 @@
-interface CharacterType {
-    id: number;
-    name: string;
-    species: string;
-    gender: string;
-    image: string;
-}
+import CharacterType from '../types/character-type';
 
 interface ApiClientInterface {
-    getCharacter(characterId: number): CharacterType;
+    getCharacter(characterId: number): Promise<CharacterType>;
 }
 
 class ApiClient implements ApiClientInterface {
     private baseUrl: string;
+    private externalData: any;
 
     constructor() {
         this.baseUrl = 'https://rickandmortyapi.com/api/';
     }
 
-    private async getResource(): Promise<any> {
-        try {
-            const response = await fetch(`${this.baseUrl}${'character/2'}`);
-            const bodyResponse: any = await response.json();
-            return bodyResponse;
-        } catch (err) {
-            console.log(err);
-        }
+    private async getResource(uri: string): Promise<any> {
+        const response = await fetch(`${this.baseUrl}${uri}`);
+        const bodyResponse: any = await response.json();
+        return bodyResponse;
     }
 
     private validateCharacter(data: any): CharacterType {
@@ -34,13 +25,14 @@ class ApiClient implements ApiClientInterface {
             species: data.species,
             gender: data.gender,
             image: data.image
-        };
-
+        }
     }
 
-    getCharacter(characterId: number): CharacterType {
-        const data: any = this.getResource();
-        const character: CharacterType = this.validateCharacter(data)
+    async getCharacter(characterId: number): Promise<CharacterType> {
+        const resource: Promise<any> = await this.getResource(`character/${characterId}/`); 
+        const character: Promise<CharacterType> = new Promise((resolve, reject) => {
+            resolve(this.validateCharacter(resource));
+        })
 
         return character;
     }
