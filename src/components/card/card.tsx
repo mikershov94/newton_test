@@ -23,7 +23,15 @@ const Card = () => {
                  alt="картинка"
                  className="card__img"/>
             <div className="card__text">
-                <div>{name}</div>            
+                <div>{name}</div>
+                <div>
+                    <span className="material-icons">
+                        favorite_border
+                    </span> 
+                    <span className="material-icons">
+                        favorite
+                    </span> 
+                </div>
             </div>
         </div>
     );
