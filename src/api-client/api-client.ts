@@ -6,14 +6,6 @@ interface CharacterType {
     image: string;
 }
 
-interface CheckDataType {
-    id: string;
-    name: string;
-    species: string;
-    gender: string;
-    image: string;
-}
-
 interface ApiClientInterface {
     getCharacter(characterId: number): CharacterType;
 }
