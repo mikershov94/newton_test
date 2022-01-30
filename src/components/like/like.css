@@ -1,0 +1,11 @@
+.like {
+    cursor: pointer;
+}
+
+.like_solid {
+    color: #A3A3CD;
+}
+
+.like:hover {
+    color: #A3A3CD;
+}

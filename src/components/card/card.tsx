@@ -1,11 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { APIContext } from "../../contexts";
 import CharacterType from "../../types/character-type";
+import Like from "../like";
 import './card.css';
 
 const Card = () => {
+    const [id, setId] = useState(0);
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
+
+    const [isCharacterLiked, setIsCharacterLiked] = useState(false);
+
+    const handleLike = (): void => {
+        setIsCharacterLiked(!isCharacterLiked);
+    };
 
     const RaMAPI = useContext(APIContext)
 
@@ -25,12 +33,8 @@ const Card = () => {
             <div className="card__text">
                 <div>{name}</div>
                 <div>
-                    <span className="material-icons">
-                        favorite_border
-                    </span> 
-                    <span className="material-icons">
-                        favorite
-                    </span> 
+                    <Like isLiked={isCharacterLiked}
+                          handleLike={handleLike} /> 
                 </div>
             </div>
         </div>

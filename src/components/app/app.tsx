@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {RaMAPI, APIContext} from '../../contexts';
 import Characters from '../characters';
@@ -7,6 +7,8 @@ import Header from '../header';
 import './app.css';
 
 const App = () => {
+    const [favorites, setFavorite] = useState([]);
+
     return(
         <APIContext.Provider value={RaMAPI}>
             <Header />
