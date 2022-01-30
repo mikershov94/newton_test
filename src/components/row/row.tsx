@@ -6,9 +6,9 @@ const Row = () => {
     
     return(
         <div className="row">
-            <Card/>
-            <Card/>
-            <Card/>
+            <Card id={1} />
+            <Card id={2} />
+            <Card id={3} />
         </div>
     );
 }

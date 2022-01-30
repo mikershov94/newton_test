@@ -1,25 +1,37 @@
 import React, { useContext, useEffect, useState } from "react";
-import { APIContext } from "../../contexts";
+import { RaMContext } from "../../contexts";
 import CharacterType from "../../types/character-type";
 import Like from "../like";
 import './card.css';
 
-const Card = () => {
+interface CardPropsInterface {
+    id: number;
+}
+
+const Card = (props: CardPropsInterface) => {
     const [id, setId] = useState(0);
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
 
     const [isCharacterLiked, setIsCharacterLiked] = useState(false);
 
+    const { addToFavorite } = useContext(RaMContext);
+
     const handleLike = (): void => {
-        setIsCharacterLiked(!isCharacterLiked);
+        setIsCharacterLiked(true);
+        addToFavorite(id);
     };
 
-    const RaMAPI = useContext(APIContext)
+    const handleDislike = (): void => {
+        setIsCharacterLiked(false)
+    };
+
+    const {RaMAPI} = useContext(RaMContext)
 
     useEffect(() => {
-        RaMAPI.getCharacter(3)
+        RaMAPI.getCharacter(props.id)
               .then((character: CharacterType) => {
+                  setId(character.id);
                   setName(character.name);
                   setImage(character.image);
               })
@@ -34,7 +46,8 @@ const Card = () => {
                 <div>{name}</div>
                 <div>
                     <Like isLiked={isCharacterLiked}
-                          handleLike={handleLike} /> 
+                          handleLike={handleLike}
+                          handleDislike={handleDislike} /> 
                 </div>
             </div>
         </div>

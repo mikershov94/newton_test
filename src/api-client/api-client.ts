@@ -1,6 +1,6 @@
 import CharacterType from '../types/character-type';
 
-interface ApiClientInterface {
+export interface ApiClientInterface {
     getCharacter(characterId: number): Promise<CharacterType>;
 }
 

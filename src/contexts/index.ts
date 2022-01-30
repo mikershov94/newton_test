@@ -1,5 +1,5 @@
-import { RaMAPI, APIContext} from "./api-context";
+import { RaMAPI, RaMContext} from "./api-context";
 export {
     RaMAPI,
-    APIContext
+    RaMContext
 };
