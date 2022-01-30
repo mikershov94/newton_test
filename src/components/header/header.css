@@ -1,0 +1,32 @@
+.header {
+    background-color: #7c7a7a;
+    height: 70px;
+    width: 100%;
+    margin: 0;
+    padding: 0 50px;
+    color: #f2f2f2;
+    font-size: 14pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    margin: 0 50px;
+}
+
+.header__item {
+    margin: 0 10px;
+    padding: 0 10px;
+}
+
+.header__item:hover {
+    cursor: pointer;
+    color: #A3A3CD;
+}
+
+.header__logo {
+    height: 50px;
+}
