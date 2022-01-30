@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { RaMContext } from "../../contexts";
 import { usePagination } from "../../hooks/usePagination";
+import { CharactersOnPageInterface, CharacterType } from "../../types/character-type";
+import { IPaginationInfo } from "../../types/paginator-types";
 import Card from "../card";
 import Paginator from "../paginator";
 
@@ -8,6 +11,15 @@ interface CharactersPropsInterface {
 }
 
 const Characters = (props: CharactersPropsInterface) => {
+    const defaultInfo: IPaginationInfo = {
+        count: 0,
+        pages: 0,
+        next: null,
+        prev: null
+    }
+    const [infoPagination, setInfoPagination] = useState<IPaginationInfo>(defaultInfo)
+    const [data, setData] = useState<CharacterType[]>([])
+
     const {
         pageCount,
         numsAfterPrev,
@@ -16,24 +28,27 @@ const Characters = (props: CharactersPropsInterface) => {
         page,
         prevPage,
         nextPage,
-        changePage} = usePagination({
-                                count:826,
-                                pages:42,
-                                next:"https://rickandmortyapi.com/api/character/?page=3",
-                                prev:"https://rickandmortyapi.com/api/character/?page=1"
-                      })
+        changePage} = usePagination(infoPagination)
+
+    const { RaMAPI } = useContext(RaMContext);
+
+    useEffect(() => {
+        RaMAPI.getAllCharacters()
+              .then((characters: CharactersOnPageInterface) => {
+                  setInfoPagination(characters.info);
+                  setData(characters.results);
+              })
+    });
+
+    
 
     return(
         <div>
             <div className={props.className} >
-                <Card id={1} />
-                <Card id={2} />
-                <Card id={3} />
-                <Card id={4} />
-                <Card id={5} />
-                <Card id={6} />
-                <Card id={7} />
-                <Card id={8} />
+                {data.map((character: CharacterType) => {
+                    <Card id={character.id}
+                          key={character.id} />
+                })}
             </div>
             <Paginator pageCount={pageCount}
                        numsAfterPrev={numsAfterPrev}

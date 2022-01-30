@@ -12,8 +12,8 @@ interface IPaginatorProps {
 interface IPaginationInfo {
     count: number;
     pages: number;
-    next: string;
-    prev: string;
+    next: string | null;
+    prev: string | null;
 }
 
 export type { 

@@ -1,20 +1,10 @@
 import Characters from '../components/characters';
-import CharacterType from '../types/character-type';
+import { CharactersOnPageInterface, CharacterType } from '../types/character-type';
+import { IPaginationInfo } from '../types/paginator-types';
 
-interface PaginatorInfoInterface {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
 
-}
 
-interface CharactersOnPageInterface {
-    info: PaginatorInfoInterface;
-    results: CharacterType[];
-}
-
-export interface ApiClientInterface {
+interface ApiClientInterface {
     getCharacter(characterId: number): Promise<CharacterType>;
     getAllCharacters(pageNum: number): Promise<CharactersOnPageInterface>;
 }

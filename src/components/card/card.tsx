@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RaMContext } from "../../contexts";
-import CharacterType from "../../types/character-type";
+import { CharacterType } from "../../types/character-type";
 import Like from "../like";
 import './card.css';
 
@@ -12,21 +12,17 @@ const Card = (props: CardPropsInterface) => {
     const [id, setId] = useState(0);
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
-
     const [isCharacterLiked, setIsCharacterLiked] = useState(false);
 
-    const { addToFavorite } = useContext(RaMContext);
+    const { RaMAPI, addToFavorite } = useContext(RaMContext);
 
     const handleLike = (): void => {
         setIsCharacterLiked(true);
         addToFavorite(id);
     };
-
     const handleDislike = (): void => {
         setIsCharacterLiked(false)
     };
-
-    const {RaMAPI} = useContext(RaMContext)
 
     useEffect(() => {
         RaMAPI.getCharacter(props.id)
