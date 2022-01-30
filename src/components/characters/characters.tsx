@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { resourceLimits } from "worker_threads";
+import { RaMContext } from "../../contexts";
+import { CharactersOnPageInterface, CharacterType } from "../../types/character-type";
 import Card from "../card";
 
 interface CharactersPropsInterface {
@@ -6,16 +9,23 @@ interface CharactersPropsInterface {
 }
 
 const Characters = (props: CharactersPropsInterface) => {
+    const [characters, setCharacters] = useState<CharacterType[]>([])
+    const {RaMAPI} = useContext(RaMContext);
+
+    useEffect(() => {
+        RaMAPI.getAllCharacters(1)
+              .then((data: CharactersOnPageInterface) => {
+                  setCharacters(data.results);
+              });
+
+        console.log(characters)
+    })
+
     return(
         <div className={props.className} >
-            <Card id={1} />
-            <Card id={2} />
-            <Card id={3} />
-            <Card id={4} />
-            <Card id={5} />
-            <Card id={6} />
-            <Card id={7} />
-            <Card id={8} />
+            {characters.map((character: CharacterType) => {
+                <Card id={character.id} />
+            })}
         </div>
     );
 };

@@ -1,18 +1,5 @@
 import Characters from '../components/characters';
-import CharacterType from '../types/character-type';
-
-interface PaginatorInfoInterface {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-
-}
-
-interface CharactersOnPageInterface {
-    info: PaginatorInfoInterface;
-    results: CharacterType[];
-}
+import { CharactersOnPageInterface, CharacterType } from '../types/character-type';
 
 export interface ApiClientInterface {
     getCharacter(characterId: number): Promise<CharacterType>;

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RaMContext } from "../../contexts";
-import CharacterType from "../../types/character-type";
+import { CharacterType } from "../../types/character-type";
 import Like from "../like";
 import './card.css';
 
