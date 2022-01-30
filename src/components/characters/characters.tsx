@@ -1,12 +1,21 @@
 import React from "react";
-import Row from '../row';
+import Card from "../card";
 
-const Characters = () => {
+interface CharactersPropsInterface {
+    className: string;
+}
+
+const Characters = (props: CharactersPropsInterface) => {
     return(
-        <div>
-            <Row />
-            <Row />
-            <Row />
+        <div className={props.className} >
+            <Card id={1} />
+            <Card id={2} />
+            <Card id={3} />
+            <Card id={4} />
+            <Card id={5} />
+            <Card id={6} />
+            <Card id={7} />
+            <Card id={8} />
         </div>
     );
 };

@@ -17,8 +17,8 @@ const App = () => {
         <RaMContext.Provider value={{ RaMAPI, favorites, addToFavorite }}>
             <Header />
             <Routes>
-                <Route path="/" element={<Characters />} />
-                <Route path="/favorite" element={<Favorite />} />
+                <Route path="/" element={<Characters className='list' />} />
+                <Route path="/favorite" element={<Favorite className='list' />} />
             </Routes>
         </RaMContext.Provider>
     );
