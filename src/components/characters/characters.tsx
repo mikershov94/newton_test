@@ -1,4 +1,5 @@
 import React from "react";
+import { usePagination } from "../../hooks/usePagination";
 import Card from "../card";
 import Paginator from "../paginator";
 
@@ -7,6 +8,21 @@ interface CharactersPropsInterface {
 }
 
 const Characters = (props: CharactersPropsInterface) => {
+    const {
+        pageCount,
+        numsAfterPrev,
+        numsBeforeNext,
+        numsBetweenPass,
+        page,
+        prevPage,
+        nextPage,
+        changePage} = usePagination({
+                                count:826,
+                                pages:42,
+                                next:"https://rickandmortyapi.com/api/character/?page=3",
+                                prev:"https://rickandmortyapi.com/api/character/?page=1"
+                      })
+
     return(
         <div>
             <div className={props.className} >
@@ -19,7 +35,14 @@ const Characters = (props: CharactersPropsInterface) => {
                 <Card id={7} />
                 <Card id={8} />
             </div>
-            <Paginator />
+            <Paginator pageCount={pageCount}
+                       numsAfterPrev={numsAfterPrev}
+                       numsBeforeNext={numsBeforeNext}
+                       numsBetweenPass={numsBetweenPass}
+                       page={page}
+                       prevPage={prevPage}
+                       nextPage={nextPage}
+                       changePage={changePage} />
         </div>
     );
 };

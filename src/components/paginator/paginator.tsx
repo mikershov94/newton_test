@@ -1,42 +1,73 @@
 import React from "react";
+import { IPaginatorProps } from "../../types/paginator-types";
 import './paginator.css';
-
-interface IPaginatorProps {
-    pageCount: number;                  //количество страниц
-    numsAfterPrev: number[];            //номера страниц после кнопки "Пред."
-    numsBeforeNext: number[];           //номера страниц перед кнопкой "След."
-    countPass: number;                  //количество страниц для пропуска
-    page: number;                       //текущая страница
-    prevPage: number;                   //предыдущая страница
-    nextPage: number;                   //следующая страница
-    changePage: (id: number) => void;   //функция для смены страницы
-}
 
 const Paginator = (props: IPaginatorProps) => {
     //список элементов после кнопки "Пред."
     const afterPrev: JSX.Element[] = props.numsAfterPrev.map((num: number) => {
-        return <div className="paginator__button"
+        let className = 'paginator__button'
+        if (props.page == num) className += ' paginator__button_active'
+        return <div className={className}
                     key={num}
                     onClick={() => props.changePage(num)}>{num}</div>
     });
 
     //список элементов до кнопки "След."
     const beforeNext: JSX.Element[] = props.numsBeforeNext.map((num: number) => {
-        return <div className="paginator__button"
+        let className = 'paginator__button'
+        if (props.page == num) className += ' paginator__button_active'
+        return <div className={className}
                     key={num}
                     onClick={() => props.changePage(num)}>{num}</div>
     })
+    
+    //список элементов между "..."
+    let betweenPass: JSX.Element[] | null = null;
+    let passPrev: JSX.Element | null = null;
+    let passNext: JSX.Element | null = null;
+    let pass: JSX.Element | null = null;
+    if (props.numsBetweenPass.length !== 0) {
+        //формирует элементов между кнопками "..."
+        betweenPass = props.numsBetweenPass.map((num: number) => {
+            let className = 'paginator__button'
+            if (props.page == num) className += ' paginator__button_active'
+            return <div className={className}
+                        key={num}
+                        onClick={() => props.changePage(num)}>{num}</div>
+        });
+        //кнопка "..." до списка
+        passPrev = <div className="paginator__button"
+                        onClick={() => props.changePage(props.page - 10)}>...</div>
+        //кнопка "..." после списка
+        passNext = <div className="paginator__button"
+                        onClick={() => props.changePage(props.page + 10)}>...</div>
+    } else {
+        //кнопка "..." если текщая страница ближе к началу
+        if (props.numsAfterPrev.length > 2) {
+            pass = <div className="paginator__button"
+                        onClick={() => props.changePage(props.page + 10)}>...</div>
+        }
+
+        //кнопка "..." если текущая страница ближе к концу
+        if (props.numsBeforeNext.length > 2) {
+            pass = <div className="paginator__button"
+                        onClick={() => props.changePage(props.page - 10)}>...</div>
+        }
+
+    }
 
     return(
         <div className="paginator">
             <div className="paginator__button paginator__button_prev"
-                 onClick={() => props.changePage(props.prevPage)}>Пред.</div>
+                 onClick={() => { if (props.prevPage !== null) props.changePage(props.prevPage)}}>Пред.</div>
             {afterPrev}
-            <div className="paginator__button"
-                 onClick={() => props.changePage(props.countPass)}>...</div>
+            {passPrev}
+            {betweenPass}
+            {passNext}
+            {pass}
             {beforeNext}
             <div className="paginator__button paginator__button_next"
-                 onClick={() => props.changePage(props.nextPage)}>След.</div>
+                 onClick={() => { if (props.nextPage !== null) props.changePage(props.nextPage)}}>След.</div>
         </div>
     );
 };

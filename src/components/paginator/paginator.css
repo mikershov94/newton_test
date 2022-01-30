@@ -21,6 +21,10 @@
     cursor: pointer;
 }
 
+.paginator__button_active {
+    background-color: #A3A3CD;
+}
+
 .paginator__button:hover {
     background-color: #A3A3CD;
 }
