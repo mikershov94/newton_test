@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RaMContext } from "../../contexts";
-import { CharacterType } from "../../types/character-type";
+import { CardPropsInterface } from "../../types/card-types";
+import { CharacterType } from "../../types/character-types";
 import Like from "../like";
 import './card.css';
-
-interface CardPropsInterface {
-    id: number;
-}
 
 const Card = (props: CardPropsInterface) => {
     const [id, setId] = useState(0);

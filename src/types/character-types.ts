@@ -13,7 +13,12 @@ interface CharactersOnPageInterface {
     results: CharacterType[];
 }
 
+interface CharactersPropsInterface {
+    className: string;
+}
+
 export type {
     CharacterType,
-    CharactersOnPageInterface
+    CharactersOnPageInterface,
+    CharactersPropsInterface
 };

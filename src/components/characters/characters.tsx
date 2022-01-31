@@ -1,14 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RaMContext } from "../../contexts";
 import { usePagination } from "../../hooks/usePagination";
-import { CharactersOnPageInterface, CharacterType } from "../../types/character-type";
+import { CharactersOnPageInterface, CharactersPropsInterface, CharacterType } from "../../types/character-types";
 import { IPaginationInfo } from "../../types/paginator-types";
 import Card from "../card";
 import Paginator from "../paginator";
-
-interface CharactersPropsInterface {
-    className: string;
-}
 
 const Characters = (props: CharactersPropsInterface) => {
     const defaultInfo: IPaginationInfo = {

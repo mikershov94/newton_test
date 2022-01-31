@@ -1,12 +1,6 @@
 import React from 'react';
 import ApiClient from '../api-client';
-import { ApiClientInterface } from '../api-client/api-client';
-
-interface ContextPropsInterface {
-    RaMAPI: ApiClientInterface;
-    favorites: number[];
-    addToFavorite: (id: number) => void;
-}
+import { ApiClientInterface } from '../types/api-client-types';
 
 const RaMAPI: ApiClientInterface = new ApiClient();     //Rick and Morty API
 const favorites: number[] = []

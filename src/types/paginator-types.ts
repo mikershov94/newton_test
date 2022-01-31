@@ -7,7 +7,6 @@ interface IPaginatorProps {
     prevPage: number | null;                   //предыдущая страница
     nextPage: number | null;                   //следующая страница
     changePage: (num: number) => void;   //функция для смены страницы
-    setData: (characters)
 }
 
 interface IPaginationInfo {

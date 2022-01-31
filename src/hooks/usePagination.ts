@@ -1,7 +1,7 @@
 import { IPaginationInfo, IPaginatorProps } from "../types/paginator-types";
 import { useContext, useEffect, useState } from 'react';
 import { RaMContext } from "../contexts";
-import { CharactersOnPageInterface } from "../types/character-type";
+import { CharactersOnPageInterface } from "../types/character-types";
 
 function usePagination(info: IPaginationInfo): IPaginatorProps {
     const [pageCount, setPageCount] = useState<number>(info.pages);

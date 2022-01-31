@@ -1,13 +1,7 @@
 import Characters from '../components/characters';
-import { CharactersOnPageInterface, CharacterType } from '../types/character-type';
+import { ApiClientInterface } from '../types/api-client-types';
+import { CharactersOnPageInterface, CharacterType } from '../types/character-types';
 import { IPaginationInfo } from '../types/paginator-types';
-
-
-
-interface ApiClientInterface {
-    getCharacter(characterId: number): Promise<CharacterType>;
-    getAllCharacters(pageNum: number): Promise<CharactersOnPageInterface>;
-}
 
 class ApiClient implements ApiClientInterface {
     private baseUrl: string;

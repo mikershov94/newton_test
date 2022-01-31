@@ -1,11 +1,6 @@
 import React from 'react';
+import { LikePropsInterface } from '../../types/like-types';
 import './like.css';
-
-interface LikePropsInterface {
-    isLiked: boolean;
-    handleLike: () => void;
-    handleDislike: () => void;
-}
 
 const Like = (props: LikePropsInterface) => {
     const notLiked: JSX.Element = <span className="material-icons like"
