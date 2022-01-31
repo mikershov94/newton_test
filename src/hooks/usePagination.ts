@@ -1,5 +1,7 @@
 import { IPaginationInfo, IPaginatorProps } from "../types/paginator-types";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { RaMContext } from "../contexts";
+import { CharactersOnPageInterface } from "../types/character-type";
 
 function usePagination(info: IPaginationInfo): IPaginatorProps {
     const [pageCount, setPageCount] = useState<number>(info.pages);
@@ -25,7 +27,7 @@ function usePagination(info: IPaginationInfo): IPaginatorProps {
     
     function changePage(numPage: number): void {
         setPage(numPage);
-        console.log(numPage)
+
         if (page <= 5) {
             setNumsAfterPrev([1,2,3,4,5]);
             setNumsBeforeNext([lastPage-1, lastPage])

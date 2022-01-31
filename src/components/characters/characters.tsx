@@ -30,18 +30,6 @@ const Characters = (props: CharactersPropsInterface) => {
         nextPage,
         changePage} = usePagination(infoPagination)
 
-    const { RaMAPI } = useContext(RaMContext);
-
-    useEffect(() => {
-        RaMAPI.getAllCharacters()
-              .then((characters: CharactersOnPageInterface) => {
-                  setInfoPagination(characters.info);
-                  setData(characters.results);
-              })
-    });
-
-    
-
     return(
         <div>
             <div className={props.className} >

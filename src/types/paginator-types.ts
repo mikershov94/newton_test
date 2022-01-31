@@ -7,6 +7,7 @@ interface IPaginatorProps {
     prevPage: number | null;                   //предыдущая страница
     nextPage: number | null;                   //следующая страница
     changePage: (num: number) => void;   //функция для смены страницы
+    setData: (characters)
 }
 
 interface IPaginationInfo {
@@ -16,7 +17,17 @@ interface IPaginationInfo {
     prev: string | null;
 }
 
+interface IPaginatorElements {
+    afterPrev: JSX.Element[];
+    passPrev: JSX.Element | null;
+    betweenPass: JSX.Element[] | null;
+    passNext: JSX.Element | null;
+    beforeNext: JSX.Element[];
+    pass: JSX.Element | null;
+}
+
 export type { 
     IPaginatorProps,
-    IPaginationInfo
+    IPaginationInfo,
+    IPaginatorElements
 };
