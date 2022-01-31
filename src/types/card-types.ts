@@ -1,5 +1,7 @@
+import { ICharacter } from "./character-types";
+
 interface ICardProps {
-    id: number;
+    character: ICharacter;
 }
 
 export type {

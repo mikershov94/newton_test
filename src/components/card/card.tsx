@@ -6,37 +6,22 @@ import Like from "../like";
 import './card.css';
 
 const Card = (props: ICardProps) => {
-    const [id, setId] = useState(0);
-    const [name, setName] = useState('');
-    const [image, setImage] = useState('');
     const [isCharacterLiked, setIsCharacterLiked] = useState(false);
-
-    const { RaMAPI, addToFavorite } = useContext(RaMContext);
 
     const handleLike = (): void => {
         setIsCharacterLiked(true);
-        addToFavorite(id);
     };
     const handleDislike = (): void => {
         setIsCharacterLiked(false)
     };
 
-    useEffect(() => {
-        RaMAPI.getCharacter(props.id)
-              .then((character: ICharacter) => {
-                  setId(character.id);
-                  setName(character.name);
-                  setImage(character.image);
-              })
-    })
-
     return(
         <div className="card">
-            <img src={image} 
+            <img src={props.character.image} 
                  alt="картинка"
                  className="card__img"/>
             <div className="card__text">
-                <div>{name}</div>
+                <div>{props.character.name}</div>
                 <div>
                     <Like isLiked={isCharacterLiked}
                           handleLike={handleLike}

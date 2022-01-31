@@ -1,7 +1,9 @@
-import { IPaginationInfo, IPaginatorProps } from "../types/paginator-types";
+import { IPaginationInfo, IPaginatorProps, TChangeNumPageCallback } from "../types/paginator-types";
 import { useEffect, useState } from 'react';
 
-function usePagination(info: IPaginationInfo): IPaginatorProps {
+function usePagination(info: IPaginationInfo,
+                       setNumPage: TChangeNumPageCallback): IPaginatorProps {
+    
     const [pageCount, setPageCount] = useState<number>(info.pages);
     const [firstPage, setFirstPage] = useState<number>(1);
     const [lastPage, setLastPage] = useState<number>(info.pages);
@@ -11,20 +13,11 @@ function usePagination(info: IPaginationInfo): IPaginatorProps {
     const [page, setPage] = useState<number>(1);
     const [prevPage, setPrevPage] = useState<number | null>(null);
     const [nextPage, setNextPage] = useState<number | null>(2);
-
-    useEffect(() => {
-        /*
-        console.log({
-            page,
-            numsAfterPrev,
-            numsBeforeNext,
-            numsBetweenPass
-        })
-        */
-    })
     
     function changePage(numPage: number): void {
         setPage(numPage);
+
+        setNumPage(page);
 
         if (page <= 5) {
             setNumsAfterPrev([1,2,3,4,5]);
@@ -79,25 +72,6 @@ function usePagination(info: IPaginationInfo): IPaginatorProps {
         nextPage,
         changePage
     }
-    
-    function defineNumsOnPaginator(countAfterPrev: number,
-                                   countBeforeNext: number,
-                                   countBetweenPass: number): void {
-        
-    
-        
-
-        //формируем массив номеров страниц между кнопками "..."
-        if (countBetweenPass !== 0) {
-            for (let index = 0; index < countBetweenPass; index++) {
-                setNumsBetweenPass([...numsBetweenPass, index]);
-                
-            }
-        } else {
-            setNumsBetweenPass([]);
-        }
-    }
-
 }
 
 export {

@@ -2,7 +2,7 @@ import { ICharacter } from "./character-types";
 
 interface IPage {
     info: IPaginationInfo;
-    results: ICharacter;
+    results: ICharacter[];
 }
 
 interface IPaginatorProps {
@@ -32,9 +32,12 @@ interface IPaginatorElements {
     pass: JSX.Element | null;
 }
 
+type TChangeNumPageCallback = (numPage: number) => void
+
 export type {
     IPage, 
     IPaginatorProps,
     IPaginationInfo,
-    IPaginatorElements
+    IPaginatorElements,
+    TChangeNumPageCallback
 };

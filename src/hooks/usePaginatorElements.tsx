@@ -1,3 +1,4 @@
+import React from "react";
 import { IPaginatorElements, IPaginatorProps } from "../types/paginator-types";
 
 function usePaginatorElements(props: IPaginatorProps): IPaginatorElements {

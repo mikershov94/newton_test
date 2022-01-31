@@ -3,7 +3,7 @@ import { IPage } from "./paginator-types";
 
 interface IApiClient {
     getCharacter(characterId: number): Promise<ICharacter>;
-    getAllCharacters(pageNum: number): Promise<IPage>;
+    getAllCharacters(numPage: number): Promise<IPage>;
 }
 
 export type {
