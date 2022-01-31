@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { RaMContext } from "../../contexts";
-import { FavoritePropsInterface } from "../../types/favorite-types";
+import { IFavoriteProps } from "../../types/favorite-types";
 import Card from "../card";
 
-const Favorite = (props: FavoritePropsInterface) => {
+const Favorite = (props: IFavoriteProps) => {
     const { favorites } = useContext(RaMContext);
 
     console.log(favorites)

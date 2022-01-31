@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RaMContext } from "../../contexts";
 import { usePagination } from "../../hooks/usePagination";
-import { CharactersOnPageInterface, CharactersPropsInterface, CharacterType } from "../../types/character-types";
+import { ICharacter, ICharactersProps } from "../../types/character-types";
 import { IPaginationInfo } from "../../types/paginator-types";
 import Card from "../card";
 import Paginator from "../paginator";
 
-const Characters = (props: CharactersPropsInterface) => {
+const Characters = (props: ICharactersProps) => {
     const defaultInfo: IPaginationInfo = {
         count: 0,
         pages: 0,
@@ -14,7 +14,7 @@ const Characters = (props: CharactersPropsInterface) => {
         prev: null
     }
     const [infoPagination, setInfoPagination] = useState<IPaginationInfo>(defaultInfo)
-    const [data, setData] = useState<CharacterType[]>([])
+    const [data, setData] = useState<ICharacter[]>([])
 
     const {
         pageCount,
@@ -29,7 +29,7 @@ const Characters = (props: CharactersPropsInterface) => {
     return(
         <div>
             <div className={props.className} >
-                {data.map((character: CharacterType) => {
+                {data.map((character: ICharacter) => {
                     <Card id={character.id}
                           key={character.id} />
                 })}

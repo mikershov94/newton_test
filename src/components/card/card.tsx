@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RaMContext } from "../../contexts";
-import { CardPropsInterface } from "../../types/card-types";
-import { CharacterType } from "../../types/character-types";
+import { ICardProps } from "../../types/card-types";
+import { ICharacter } from "../../types/character-types";
 import Like from "../like";
 import './card.css';
 
-const Card = (props: CardPropsInterface) => {
+const Card = (props: ICardProps) => {
     const [id, setId] = useState(0);
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
@@ -23,7 +23,7 @@ const Card = (props: CardPropsInterface) => {
 
     useEffect(() => {
         RaMAPI.getCharacter(props.id)
-              .then((character: CharacterType) => {
+              .then((character: ICharacter) => {
                   setId(character.id);
                   setName(character.name);
                   setImage(character.image);
