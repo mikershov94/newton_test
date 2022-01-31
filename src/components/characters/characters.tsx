@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { RaMContext } from "../../contexts";
 import { usePagination } from "../../hooks/usePagination";
+import { RaMAPI, RaMContext } from "../app/app-context";
 import { ICharacter, ICharactersProps } from "../../types/character-types";
 import { IPage, IPaginationInfo } from "../../types/paginator-types";
 import Card from "../card";
 import Paginator from "../paginator";
 
-const Characters = (props: ICharactersProps) => {
+const Characters = (props: ICharactersProps): JSX.Element => {
+    const [characters, setCharacters] = useState<ICharacter[]>([]);
+
     const defaultInfo: IPaginationInfo = {
         count: 0,
         pages: 0,
@@ -15,8 +17,7 @@ const Characters = (props: ICharactersProps) => {
     }
 
     const [infoPagination, setInfoPagination] = useState<IPaginationInfo>(defaultInfo)
-    const [data, setData] = useState<ICharacter[]>([])
-    const [numPage, setNumPage] = useState<number>(1);
+    const [numPage, setNumPage] = useState<number>(0);
 
     const {
         pageCount,
@@ -28,25 +29,24 @@ const Characters = (props: ICharactersProps) => {
         nextPage,
         changePage} = usePagination(infoPagination, setNumPage);
 
-    const {RaMAPI} = useContext(RaMContext);
+    //const {characters, addCharacters} = useContext(RaMContext);
 
     useEffect(() => {
         RaMAPI.getAllCharacters(numPage)
               .then((page: IPage) => {
                   setInfoPagination(page.info);
-                  page.results.map((character: ICharacter) => {
-                      setData([...data, character]);
-                  })
+                  setCharacters(page.results)
               })
+              //console.log(characters)
+        
     }, [numPage]);
+
 
     return(
         <div>
             <div className={props.className} >
-                {data.map((character: ICharacter, key: number) => {
-                    console.log(character)
-                    return <Card character={character}
-                                 key={key} />
+                {characters.map((character: ICharacter) => {
+                    return <Card character={character} key={character.id} />
                 })}
             </div>
             <Paginator pageCount={pageCount}

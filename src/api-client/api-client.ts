@@ -53,7 +53,7 @@ class ApiClient implements IApiClient {
     async getAllCharacters(pageNum: number): Promise<IPage> {
         //снаружи приходит неопределнный тип данных, поэтому any
         const resource: Promise<any> = await this.getResource(`character/?page=${pageNum}`);
-
+        
         //после успешного разрешения промиса возвращаются типизированные данные
         const charactersOnPage: Promise<IPage> = new Promise((resolve, reject) => {
             resolve(this.validateCharactersOnPage(resource));

@@ -3,7 +3,7 @@ import { usePaginatorElements } from "../../hooks/usePaginatorElements";
 import { IPaginatorProps } from "../../types/paginator-types";
 import './paginator.css';
 
-const Paginator = (props: IPaginatorProps) => {
+const Paginator = (props: IPaginatorProps): JSX.Element => {
     const {afterPrev,
            passPrev,
            betweenPass,
