@@ -1,10 +1,11 @@
-import { CharactersOnPageInterface, CharacterType } from "./character-types";
+import { ICharacter } from "./character-types";
+import { IPage } from "./paginator-types";
 
-interface ApiClientInterface {
-    getCharacter(characterId: number): Promise<CharacterType>;
-    getAllCharacters(pageNum: number): Promise<CharactersOnPageInterface>;
+interface IApiClient {
+    getCharacter(characterId: number): Promise<ICharacter>;
+    getAllCharacters(pageNum: number): Promise<IPage>;
 }
 
 export type {
-    ApiClientInterface
+    IApiClient
 }

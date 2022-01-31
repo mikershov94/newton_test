@@ -1,11 +1,11 @@
-import { ApiClientInterface } from "./api-client-types";
+import { IApiClient } from "./api-client-types";
 
-interface ContextPropsInterface {
-    RaMAPI: ApiClientInterface;
+interface IContextProps {
+    RaMAPI: IApiClient;
     favorites: number[];
     addToFavorite: (id: number) => void;
 }
 
 export type {
-    ContextPropsInterface
+    IContextProps
 }

@@ -1,9 +1,7 @@
-import { type } from "os";
-
-interface FavoritePropsInterface {
+interface IFavoriteProps {
     className: string;
 }
 
 export type {
-    FavoritePropsInterface
+    IFavoriteProps
 }

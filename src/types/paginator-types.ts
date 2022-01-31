@@ -1,3 +1,10 @@
+import { ICharacter } from "./character-types";
+
+interface IPage {
+    info: IPaginationInfo;
+    results: ICharacter;
+}
+
 interface IPaginatorProps {
     pageCount: number;                  //количество страниц
     numsAfterPrev: number[];            //номера страниц после кнопки "Пред."
@@ -25,7 +32,8 @@ interface IPaginatorElements {
     pass: JSX.Element | null;
 }
 
-export type { 
+export type {
+    IPage, 
     IPaginatorProps,
     IPaginationInfo,
     IPaginatorElements
