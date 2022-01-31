@@ -1,20 +1,16 @@
 import React, { useContext, useEffect } from "react";
-import { RaMContext } from "../../contexts";
+import { ICharacter } from "../../types/character-types";
+import { IFavoriteProps } from "../../types/favorite-types";
+import { RaMContext } from "../app/app-context";
 import Card from "../card";
 
-interface FavoritePropsInterface {
-    className: string;
-}
-
-const Favorite = (props: FavoritePropsInterface) => {
-    const { favorites } = useContext(RaMContext);
-
-    console.log(favorites)
+const Favorite = (props: IFavoriteProps): JSX.Element => {
+    const {favorites} = useContext(RaMContext);
 
     return(
         <div className={props.className} >
-            {favorites.map((favorite: number) => {
-                return <Card id={favorite} key={favorite} />
+            {favorites.map((character: ICharacter) => {
+                return <Card character={character} key={character.id} />
             })}
         </div>
     );

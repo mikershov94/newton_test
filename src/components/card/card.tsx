@@ -1,49 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
-import { RaMContext } from "../../contexts";
-import { CharacterType } from "../../types/character-type";
+import React, { useContext, useState } from "react";
+import { ICardProps } from "../../types/card-types";
+import { RaMContext } from "../app/app-context";
 import Like from "../like";
 import './card.css';
 
-interface CardPropsInterface {
-    id: number;
-}
-
-const Card = (props: CardPropsInterface) => {
-    const [id, setId] = useState(0);
-    const [name, setName] = useState('');
-    const [image, setImage] = useState('');
-
+const Card = (props: ICardProps): JSX.Element => {
     const [isCharacterLiked, setIsCharacterLiked] = useState(false);
 
-    const { addToFavorite } = useContext(RaMContext);
+    const {addFavorite} = useContext(RaMContext);
 
     const handleLike = (): void => {
         setIsCharacterLiked(true);
-        addToFavorite(id);
+        addFavorite(props.character)
     };
-
     const handleDislike = (): void => {
         setIsCharacterLiked(false)
     };
 
-    const {RaMAPI} = useContext(RaMContext)
-
-    useEffect(() => {
-        RaMAPI.getCharacter(props.id)
-              .then((character: CharacterType) => {
-                  setId(character.id);
-                  setName(character.name);
-                  setImage(character.image);
-              })
-    })
-
     return(
         <div className="card">
-            <img src={image} 
+            <img src={props.character.image} 
                  alt="картинка"
                  className="card__img"/>
             <div className="card__text">
-                <div>{name}</div>
+                <div>{props.character.name}</div>
+                <div>{props.character.gender}</div>
+                <div>{props.character.species}</div>
                 <div>
                     <Like isLiked={isCharacterLiked}
                           handleLike={handleLike}
