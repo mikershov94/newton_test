@@ -13,8 +13,7 @@ interface Page {
 }
 
 interface ApiClient {
-    getCharacter(characterId: number): Promise<Character>;
-    getAllCharacters(numPage: number): Promise<Page>;
+    getCharactersPage(numPage: number): Promise<Page>;
 }
 
 type AddCharacters = (characters: Character[]) => void;
