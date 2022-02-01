@@ -8,9 +8,8 @@ class RaMClient implements ApiClient {
     }
 
     async getCharactersPage(numPage: number): Promise<Page> {
-        const response: Response = await fetch(`${this.baseUrl}?page=${numPage}`);
+        const response: Response = await fetch(`${this.baseUrl}character/?page=${numPage}`);
         const body: Promise<Page> = await response.json();
-
         return body;
     }
 }

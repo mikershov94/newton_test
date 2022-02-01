@@ -7,7 +7,7 @@ import Card from "../card";
 const Characters = (props: CharactersProps): JSX.Element => {
     const [characters, setCharacters] = useState<Character[]>([]);
 
-    const [numPage, setNumPage] = useState<number>(0);
+    const [numPage, setNumPage] = useState<number>(1);
 
     useEffect(() => {
         RaMAPI.getCharactersPage(numPage)
@@ -16,7 +16,7 @@ const Characters = (props: CharactersProps): JSX.Element => {
               })
               //console.log(characters)
         
-    }, [numPage]);
+    }, []);
 
 
     return(
