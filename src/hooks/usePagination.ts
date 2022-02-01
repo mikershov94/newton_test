@@ -18,7 +18,6 @@ function usePagination(info: IPaginationInfo,
         setPage(numPage);
 
         setNumPage(page);
-
         if (page <= 5) {
             setNumsAfterPrev([1,2,3,4,5]);
             setNumsBeforeNext([lastPage-1, lastPage])
@@ -35,6 +34,7 @@ function usePagination(info: IPaginationInfo,
                 page+1,
                 page+2
             ])
+            
         }
         if (page >= lastPage - 4) {
             setNumsAfterPrev([1,2])
@@ -70,7 +70,8 @@ function usePagination(info: IPaginationInfo,
         page,
         prevPage,
         nextPage,
-        changePage
+        changePage,
+        setNumPage
     }
 }
 

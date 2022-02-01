@@ -13,7 +13,9 @@ interface IPaginatorProps {
     page: number;                       //текущая страница
     prevPage: number | null;                   //предыдущая страница
     nextPage: number | null;                   //следующая страница
-    changePage: (num: number) => void;   //функция для смены страницы
+    changePage: (num: number,
+                setNumPage: TChangeNumPageCallback) => void;   //функция для смены страницы
+    setNumPage: TChangeNumPageCallback;
 }
 
 interface IPaginationInfo {

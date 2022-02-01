@@ -8,7 +8,8 @@ function usePaginatorElements(props: IPaginatorProps): IPaginatorElements {
         if (props.page == num) className += ' paginator__button_active'
         return <div className={className}
                     key={num}
-                    onClick={() => {props.changePage(num)}}>{num}</div>
+                    onClick={() => {props.changePage(num, 
+                                                     props.setNumPage)}}>{num}</div>
     });
 
     //список элементов до кнопки "След."
@@ -17,7 +18,8 @@ function usePaginatorElements(props: IPaginatorProps): IPaginatorElements {
         if (props.page == num) className += ' paginator__button_active'
         return <div className={className}
                     key={num}
-                    onClick={() => props.changePage(num)}>{num}</div>
+                    onClick={() => props.changePage(num,
+                                                    props.setNumPage)}>{num}</div>
     })
     
     //список элементов между "..."
@@ -32,25 +34,30 @@ function usePaginatorElements(props: IPaginatorProps): IPaginatorElements {
             if (props.page == num) className += ' paginator__button_active'
             return <div className={className}
                         key={num}
-                        onClick={() => props.changePage(num)}>{num}</div>
+                        onClick={() => props.changePage(num,
+                                                        props.setNumPage)}>{num}</div>
         });
         //кнопка "..." до списка
         passPrev = <div className="paginator__button"
-                        onClick={() => props.changePage(props.page - 10)}>...</div>
+                        onClick={() => props.changePage(props.page - 10,
+                                                        props.setNumPage)}>...</div>
         //кнопка "..." после списка
         passNext = <div className="paginator__button"
-                        onClick={() => props.changePage(props.page + 10)}>...</div>
+                        onClick={() => props.changePage(props.page + 10, 
+                                                        props.setNumPage)}>...</div>
     } else {
         //кнопка "..." если текщая страница ближе к началу
         if (props.numsAfterPrev.length > 2) {
             pass = <div className="paginator__button"
-                        onClick={() => props.changePage(props.page + 10)}>...</div>
+                        onClick={() => props.changePage(props.page + 10,
+                                                        props.setNumPage)}>...</div>
         }
 
         //кнопка "..." если текущая страница ближе к концу
         if (props.numsBeforeNext.length > 2) {
             pass = <div className="paginator__button"
-                        onClick={() => props.changePage(props.page - 10)}>...</div>
+                        onClick={() => props.changePage(props.page - 10,
+                                                        props.setNumPage)}>...</div>
         }
 
     }

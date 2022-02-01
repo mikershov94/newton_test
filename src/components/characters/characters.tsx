@@ -17,7 +17,7 @@ const Characters = (props: ICharactersProps): JSX.Element => {
     }
 
     const [infoPagination, setInfoPagination] = useState<IPaginationInfo>(defaultInfo)
-    const [numPage, setNumPage] = useState<number>(0);
+    const [numPage, setNumPage] = useState<number>(1);
 
     const {
         pageCount,
@@ -36,12 +36,12 @@ const Characters = (props: ICharactersProps): JSX.Element => {
               .then((page: IPage) => {
                   setInfoPagination(page.info);
                   setCharacters(page.results)
+                  changePage(1, setNumPage)
               })
               //console.log(characters)
-        
     }, [numPage]);
 
-
+    //console.log(numsBeforeNext)
     return(
         <div>
             <div className={props.className} >
@@ -56,7 +56,8 @@ const Characters = (props: ICharactersProps): JSX.Element => {
                        page={page}
                        prevPage={prevPage}
                        nextPage={nextPage}
-                       changePage={changePage} />
+                       changePage={changePage}
+                       setNumPage={setNumPage} />
         </div>
     );
 };

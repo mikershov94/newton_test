@@ -9,12 +9,22 @@ const Paginator = (props: IPaginatorProps): JSX.Element => {
            betweenPass,
            passNext,
            pass,
-           beforeNext} = usePaginatorElements(props);
+           beforeNext} = usePaginatorElements(props);           
+
+    const handleButtonPrev = () => {
+        if (props.prevPage !== null) props.changePage(props.prevPage,
+                                                      props.setNumPage);
+    }
+
+    const handleButtonNext = () => {
+        if (props.nextPage !== null) props.changePage(props.nextPage,
+                                                      props.setNumPage);
+    }
     
     return(
         <div className="paginator">
             <div className="paginator__button paginator__button_prev"
-                 onClick={() => { if (props.prevPage !== null) props.changePage(props.prevPage)}}>Пред.</div>
+                 onClick={handleButtonPrev}>Пред.</div>
             {afterPrev}
             {passPrev}
             {betweenPass}
@@ -22,7 +32,7 @@ const Paginator = (props: IPaginatorProps): JSX.Element => {
             {pass}
             {beforeNext}
             <div className="paginator__button paginator__button_next"
-                 onClick={() => { if (props.nextPage !== null) props.changePage(props.nextPage)}}>След.</div>
+                 onClick={handleButtonNext}>След.</div>
         </div>
     );
 };
