@@ -1,5 +1,4 @@
 import { ApiClient, Page } from "../types/api-client-types";
-import { Character } from "../types/character-types";
 
 class RaMClient implements ApiClient {
     private baseUrl: string;
