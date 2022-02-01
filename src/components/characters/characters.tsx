@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { usePagination } from "../../hooks/usePagination";
 import { RaMAPI } from "../app/app-context";
 import { ICharacter, ICharactersProps } from "../../types/character-types";
 import { IPage, IPaginationInfo } from "../../types/paginator-types";
 import Card from "../card";
-import Paginator from "../paginator";
 
 const Characters = (props: ICharactersProps): JSX.Element => {
     const [characters, setCharacters] = useState<ICharacter[]>([]);
@@ -18,18 +16,6 @@ const Characters = (props: ICharactersProps): JSX.Element => {
 
     const [infoPagination, setInfoPagination] = useState<IPaginationInfo>(defaultInfo)
     const [numPage, setNumPage] = useState<number>(0);
-
-    const {
-        pageCount,
-        numsAfterPrev,
-        numsBeforeNext,
-        numsBetweenPass,
-        page,
-        prevPage,
-        nextPage,
-        changePage} = usePagination(infoPagination, setNumPage);
-
-    //const {characters, addCharacters} = useContext(RaMContext);
 
     useEffect(() => {
         RaMAPI.getAllCharacters(numPage)
@@ -49,14 +35,6 @@ const Characters = (props: ICharactersProps): JSX.Element => {
                     return <Card character={character} key={character.id} />
                 })}
             </div>
-            <Paginator pageCount={pageCount}
-                       numsAfterPrev={numsAfterPrev}
-                       numsBeforeNext={numsBeforeNext}
-                       numsBetweenPass={numsBetweenPass}
-                       page={page}
-                       prevPage={prevPage}
-                       nextPage={nextPage}
-                       changePage={changePage} />
         </div>
     );
 };
