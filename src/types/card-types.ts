@@ -1,9 +1,9 @@
-import { ICharacter } from "./character-types";
+import { Character } from "./character-types";
 
-interface ICardProps {
-    character: ICharacter;
+interface CardProps {
+    character: Character;
 }
 
 export type {
-    ICardProps
+    CardProps
 }

@@ -1,24 +1,23 @@
-import { ICharacter } from "./character-types";
-import { IPage } from "./paginator-types";
+import { Character } from "./character-types";
 
-interface IApiClient {
-    getCharacter(characterId: number): Promise<ICharacter>;
-    getAllCharacters(numPage: number): Promise<IPage>;
+interface ApiClient {
+    getCharacter(characterId: number): Promise<Character>;
+    getAllCharacters(numPage: number): Promise<Page>;
 }
 
-type TAddCharacters = (characters: ICharacter[]) => void;
-type TAddFavorite = (character: ICharacter) => void;
+type AddCharacters = (characters: Character[]) => void;
+type AddFavorite = (character: Character) => void;
 
-interface IAppContext {
-    characters: ICharacter[],
-    favorites: ICharacter[]
-    addCharacters: TAddCharacters,
-    addFavorite: TAddFavorite
+interface AppContext {
+    characters: Character[],
+    favorites: Character[]
+    addCharacters: AddCharacters,
+    addFavorite: AddFavorite
 };
 
 export type {
-    IApiClient,
-    IAppContext,
-    TAddCharacters,
-    TAddFavorite
+    ApiClient,
+    AppContext,
+    AddCharacters,
+    AddFavorite
 }

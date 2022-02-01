@@ -1,9 +1,7 @@
-import { ICharacter } from "./character-types";
-
-interface IFavoriteProps {
+interface FavoriteProps {
     className: string;
 }
 
 export type {
-    IFavoriteProps
+    FavoriteProps
 }

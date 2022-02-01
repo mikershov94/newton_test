@@ -1,6 +1,4 @@
-import { IPaginationInfo } from "./paginator-types";
-
-interface ICharacter {
+interface Character {
     id: number;
     name: string;
     species: string;
@@ -8,11 +6,11 @@ interface ICharacter {
     image: string;
 }
 
-interface ICharactersProps{
+interface CharactersProps{
     className: string;
 }
 
 export type {
-    ICharacter,
-    ICharactersProps
+    Character,
+    CharactersProps
 };
