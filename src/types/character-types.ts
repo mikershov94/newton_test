@@ -8,13 +8,6 @@ type Location = {
 }
 type Episode = string[];
 
-interface PageInfo {
-    count: number;
-    pages: number;
-    next: string;
-    prev: string;
-}
-
 interface Character {
     id: number;
     name: string;
@@ -29,11 +22,6 @@ interface Character {
     created: string;
 }
 
-interface Page {
-    info: PageInfo;
-    results: Character[];
-}
-
 interface CharactersProps{
     className: string;
 }
@@ -41,6 +29,4 @@ interface CharactersProps{
 export type {
     Character,
     CharactersProps,
-    PageInfo,
-    Page
 };
