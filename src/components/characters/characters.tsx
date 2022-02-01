@@ -10,7 +10,7 @@ const Characters = (props: CharactersProps): JSX.Element => {
     const [numPage, setNumPage] = useState<number>(0);
 
     useEffect(() => {
-        RaMAPI.getAllCharacters(numPage)
+        RaMAPI.getCharactersPage(numPage)
               .then((page: Page) => {
                   setCharacters(page.results)
               })
