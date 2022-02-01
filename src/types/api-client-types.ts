@@ -31,5 +31,7 @@ export type {
     ApiClient,
     AppContext,
     AddCharacters,
-    AddFavorite
+    AddFavorite,
+    Page,
+    PageInfo
 }

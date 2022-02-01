@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import ApiClient from '../../api-client';
-import { IApiClient, TAddCharacters, TAddFavorite } from '../../types/api-client-types';
-import { ICharacter } from '../../types/character-types';
+import { AddCharacters, AddFavorite } from '../../types/api-client-types';
+import { Character } from '../../types/character-types';
 import Characters from '../characters';
 import Favorite from '../favorite';
 import Header from '../header';
@@ -10,15 +9,15 @@ import { RaMContext } from './app-context';
 import './app.css';
 
 const App = (): JSX.Element => {
-    const [characters, setCharacters] = useState<ICharacter[]>([]);
-    const [favorites, setFavorites] = useState<ICharacter[]>([]);
+    const [characters, setCharacters] = useState<Character[]>([]);
+    const [favorites, setFavorites] = useState<Character[]>([]);
     
-    const addCharacters: TAddCharacters = (data: ICharacter[]): void => {
+    const addCharacters: AddCharacters = (data: Character[]): void => {
         setCharacters([]);
         //console.log(characters)
     }
 
-    const addFavorite: TAddFavorite = (character: ICharacter): void => {
+    const addFavorite: AddFavorite = (character: Character): void => {
         setFavorites([...favorites, character])
         console.log(favorites);
     }    

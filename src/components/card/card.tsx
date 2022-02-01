@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { ICardProps } from "../../types/card-types";
+import { CardProps } from "../../types/card-types";
 import { RaMContext } from "../app/app-context";
 import Like from "../like";
 import './card.css';
 
-const Card = (props: ICardProps): JSX.Element => {
+const Card = (props: CardProps): JSX.Element => {
     const [isCharacterLiked, setIsCharacterLiked] = useState(false);
 
     const {addFavorite} = useContext(RaMContext);

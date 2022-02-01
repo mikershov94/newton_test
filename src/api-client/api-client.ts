@@ -1,11 +1,8 @@
-import Characters from '../components/characters';
-import { IApiClient } from '../types/api-client-types';
-import { ICharacter } from '../types/character-types';
-import { IPage } from '../types/paginator-types';
+import { ApiClient, Page } from "../types/api-client-types";
+import { Character } from "../types/character-types";
 
-class ApiClient implements IApiClient {
+class RaMClient implements ApiClient {
     private baseUrl: string;
-    private externalData: any;
 
     constructor() {
         this.baseUrl = 'https://rickandmortyapi.com/api/';
@@ -19,7 +16,7 @@ class ApiClient implements IApiClient {
 
     //метод получает данные с неопределенным типом
     //и возвращает проверенные данные с заданным типом
-    private validateCharacter(data: any): ICharacter {
+    private validateCharacter(data: any): Character {
         return {
             id: data.id,
             name: data.name,
@@ -31,31 +28,31 @@ class ApiClient implements IApiClient {
 
     //метод получает данные с неопределенным типом
     //и возвращает проверенные данные с заданным типом
-    private validateCharactersOnPage(data: any): IPage {
+    private validateCharactersOnPage(data: any): Page {
         return {
             info: data.info,
             results: data.results
         }
     }
 
-    async getCharacter(characterId: number): Promise<ICharacter> {
+    async getCharacter(characterId: number): Promise<Character> {
         //снаружи приходит неопределнный тип данных, поэтому any
         const resource: Promise<any> = await this.getResource(`character/${characterId}/`);
         
         //после успешного разрешения промиса возвращаются типизированные данные
-        const character: Promise<ICharacter> = new Promise((resolve, reject) => {
+        const character: Promise<Character> = new Promise((resolve, reject) => {
             resolve(this.validateCharacter(resource));
         })
 
         return character;
     }
 
-    async getAllCharacters(pageNum: number): Promise<IPage> {
+    async getAllCharacters(pageNum: number): Promise<Page> {
         //снаружи приходит неопределнный тип данных, поэтому any
         const resource: Promise<any> = await this.getResource(`character/?page=${pageNum}`);
         
         //после успешного разрешения промиса возвращаются типизированные данные
-        const charactersOnPage: Promise<IPage> = new Promise((resolve, reject) => {
+        const charactersOnPage: Promise<Page> = new Promise((resolve, reject) => {
             resolve(this.validateCharactersOnPage(resource));
         })
 
@@ -63,4 +60,4 @@ class ApiClient implements IApiClient {
     }
 }
 
-export default ApiClient;
+export default RaMClient;

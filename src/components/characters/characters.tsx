@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Page } from "../../types/api-client-types";
+import { Character, CharactersProps } from "../../types/character-types";
 import { RaMAPI } from "../app/app-context";
-import { ICharacter, ICharactersProps } from "../../types/character-types";
 import Card from "../card";
 
-const Characters = (props: ICharactersProps): JSX.Element => {
-    const [characters, setCharacters] = useState<ICharacter[]>([]);
+const Characters = (props: CharactersProps): JSX.Element => {
+    const [characters, setCharacters] = useState<Character[]>([]);
 
     const [numPage, setNumPage] = useState<number>(0);
 
     useEffect(() => {
         RaMAPI.getAllCharacters(numPage)
-              .then((page: IPage) => {
+              .then((page: Page) => {
                   setCharacters(page.results)
               })
               //console.log(characters)
@@ -21,7 +22,7 @@ const Characters = (props: ICharactersProps): JSX.Element => {
     return(
         <div>
             <div className={props.className} >
-                {characters.map((character: ICharacter) => {
+                {characters.map((character: Character) => {
                     return <Card character={character} key={character.id} />
                 })}
             </div>
