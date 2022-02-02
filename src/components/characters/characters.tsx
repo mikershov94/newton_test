@@ -1,63 +1,39 @@
-import React, { useContext, useEffect, useState } from "react";
-import { usePagination } from "../../hooks/usePagination";
-import { RaMAPI } from "../app/app-context";
-import { ICharacter, ICharactersProps } from "../../types/character-types";
-import { IPage, IPaginationInfo } from "../../types/paginator-types";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Character, CharactersProps } from "../../types/character-types";
+import { CharacterState, GlobalState } from "../../types/state-types";
 import Card from "../card";
-import Paginator from "../paginator";
+import requestCharacters from "../../store/action-creators/request-characters";
+import Spinner from "../spinner";
+import ErrorMessage from "../error-message";
 
-const Characters = (props: ICharactersProps): JSX.Element => {
-    const [characters, setCharacters] = useState<ICharacter[]>([]);
+const Characters = (props: CharactersProps): JSX.Element => {
+    const state: CharacterState = useSelector((state: GlobalState) => state.characters);
+    const numPage = 2;
 
-    const defaultInfo: IPaginationInfo = {
-        count: 0,
-        pages: 0,
-        next: null,
-        prev: null
-    }
-
-    const [infoPagination, setInfoPagination] = useState<IPaginationInfo>(defaultInfo)
-    const [numPage, setNumPage] = useState<number>(1);
-
-    const {
-        pageCount,
-        numsAfterPrev,
-        numsBeforeNext,
-        numsBetweenPass,
-        page,
-        prevPage,
-        nextPage,
-        changePage} = usePagination(infoPagination, setNumPage);
-
-    //const {characters, addCharacters} = useContext(RaMContext);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        RaMAPI.getAllCharacters(numPage)
-              .then((page: IPage) => {
-                  setInfoPagination(page.info);
-                  setCharacters(page.results)
-                  changePage(1, setNumPage)
-              })
-              //console.log(characters)
-    }, [numPage]);
+        dispatch(requestCharacters(numPage))
+    }, []);
 
-    //console.log(numsBeforeNext)
+
+    if (state.loading) {
+        return <Spinner />
+    }
+
+    if (state.error) {
+        return <ErrorMessage />
+    }
+
     return(
         <div>
             <div className={props.className} >
-                {characters.map((character: ICharacter) => {
+                {state.characters.map((character: Character) => {
                     return <Card character={character} key={character.id} />
                 })}
             </div>
-            <Paginator pageCount={pageCount}
-                       numsAfterPrev={numsAfterPrev}
-                       numsBeforeNext={numsBeforeNext}
-                       numsBetweenPass={numsBetweenPass}
-                       page={page}
-                       prevPage={prevPage}
-                       nextPage={nextPage}
-                       changePage={changePage}
-                       setNumPage={setNumPage} />
+            
         </div>
     );
 };
