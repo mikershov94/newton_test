@@ -31,10 +31,10 @@ const Characters = (props: CharactersProps): JSX.Element => {
                         dispatch(recieveCharacters(page));
                     }, 2000);
               })
-              .catch(() => {
+              .catch((e: Error) => {
                     //если промис разрешается с ошибкой
                     //то диспатчим событие с неудачей
-                    console.log(state)
+                    console.log(e.message)
                     dispatch(failureCharacters());  
               })
     }, []);
