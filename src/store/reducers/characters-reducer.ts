@@ -1,8 +1,8 @@
-import { CharactersAction, CharactersActionTypes } from "../../types/action-types";
+import { CharacterActions, CharactersActionTypes  } from "../../types/action-types";
 import { CharacterState } from "../../types/state-types";
 
 const updateCharacters = (state: CharacterState,
-                          action: CharactersAction): CharacterState => {
+                          action: CharacterActions): CharacterState => {
     switch (action.type) {
         case CharactersActionTypes.CHARACTERS_REQUESTED:
             return {
@@ -13,7 +13,7 @@ const updateCharacters = (state: CharacterState,
 
         case CharactersActionTypes.CHARACTERS_RECEIVED:
             return {
-                characters: action.payload,
+                characters: action.payload.results,
                 loading: false,
                 error: false
             };
@@ -26,7 +26,7 @@ const updateCharacters = (state: CharacterState,
             };
 
         default:
-            state;
+            return state;
     }
 }
 

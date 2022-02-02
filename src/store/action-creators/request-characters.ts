@@ -1,9 +1,9 @@
 import { Dispatch } from "react";
 import { RaMAPI } from "..";
-import { CharactersAction, CharactersActionTypes } from "../../types/action-types";
+import { CharactersActionTypes, RaMActions } from "../../types/action-types";
 
 const requestCharacters = (numPage: number) => {
-    return async (dispatch: Dispatch<CharactersAction>) => {
+    return async (dispatch: Dispatch<RaMActions>) => {
         try {
             //диспатчим редьюсеру событие об отправке запроса на сервер
             dispatch({type: CharactersActionTypes.CHARACTERS_REQUESTED});
