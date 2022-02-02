@@ -1,18 +1,29 @@
+import { CharactersAction, CharactersActionTypes } from "../../types/action-types";
 import { CharacterState } from "../../types/state-types";
-import { CHARACTERS_FAILURE,
-         CHARACTERS_RECEIVED,
-         CHARACTERS_REQUESTED } from "../actions";
 
-const updateCharacters(state: CharacterState, action) {
+const updateCharacters = (state: CharacterState,
+                          action: CharactersAction): CharacterState => {
     switch (action.type) {
-        case CHARACTERS_REQUESTED:
-            return {};
+        case CharactersActionTypes.CHARACTERS_REQUESTED:
+            return {
+                characters: state.characters,
+                loading: true,
+                error: false
+            };
 
-        case CHARACTERS_RECEIVED:
-            return {};
+        case CharactersActionTypes.CHARACTERS_RECEIVED:
+            return {
+                characters: action.payload,
+                loading: false,
+                error: false
+            };
 
-        case CHARACTERS_FAILURE:
-            return {};
+        case CharactersActionTypes.CHARACTERS_FAILURE:
+            return {
+                characters: state.characters,
+                loading: false,
+                error: true
+            };
 
         default:
             state;

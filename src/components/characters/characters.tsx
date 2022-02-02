@@ -1,27 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Page } from "../../types/api-client-types";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Character, CharactersProps } from "../../types/character-types";
+import { CharacterState, GlobalState } from "../../types/state-types";
 import Card from "../card";
+import requestCharacters from "../../store/action-creators/request-characters";
 
 const Characters = (props: CharactersProps): JSX.Element => {
-    const [characters, setCharacters] = useState<Character[]>([]);
-
+    const state: CharacterState = useSelector((state: GlobalState) => state.characters);
     const [numPage, setNumPage] = useState<number>(1);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        RaMAPI.getCharactersPage(numPage)
-              .then((page: Page) => {
-                  setCharacters(page.results)
-              })
-              //console.log(characters)
-        
+        dispatch(requestCharacters(numPage))
     }, []);
 
 
     return(
         <div>
             <div className={props.className} >
-                {characters.map((character: Character) => {
+                {state.characters.map((character: Character) => {
                     return <Card character={character} key={character.id} />
                 })}
             </div>
