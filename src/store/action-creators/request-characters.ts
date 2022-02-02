@@ -12,7 +12,7 @@ const requestCharacters = (numPage: number) => {
             const response = await RaMAPI.getCharactersPage(numPage);
             dispatch({type: CharactersActionTypes.CHARACTERS_RECEIVED, payload: response})
             
-        } catch {
+        } catch(err) {
             //если при запросе отловили ошибку
             //диспатчим редьюсеру событие о неудаче и передаем сообщение
             dispatch({

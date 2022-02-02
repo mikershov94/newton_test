@@ -18,18 +18,22 @@ const Characters = (props: CharactersProps): JSX.Element => {
     }, []);
 
 
+    if (state.loading) {
+        return <Spinner />
+    }
+
+    if (state.error) {
+        return <ErrorMessage />
+    }
+
     return(
         <div>
-            <ErrorMessage />
-            {/*
             <div className={props.className} >
-                
-                
                 {state.characters.map((character: Character) => {
                     return <Card character={character} key={character.id} />
                 })}
             </div>
-            */}
+            
         </div>
     );
 };
