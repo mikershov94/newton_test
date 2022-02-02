@@ -1,0 +1,16 @@
+.error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #7c7a7a
+}
+
+.error-message__text {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+.error-message span{
+    font-size: 50px;
+}

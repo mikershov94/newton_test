@@ -5,6 +5,7 @@ import { CharacterState, GlobalState } from "../../types/state-types";
 import Card from "../card";
 import requestCharacters from "../../store/action-creators/request-characters";
 import Spinner from "../spinner";
+import ErrorMessage from "../error-message";
 
 const Characters = (props: CharactersProps): JSX.Element => {
     const state: CharacterState = useSelector((state: GlobalState) => state.characters);
@@ -19,7 +20,7 @@ const Characters = (props: CharactersProps): JSX.Element => {
 
     return(
         <div>
-            <Spinner />
+            <ErrorMessage />
             {/*
             <div className={props.className} >
                 
