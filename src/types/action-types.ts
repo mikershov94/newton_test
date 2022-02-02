@@ -27,5 +27,8 @@ type RaMActions = CharacterActions;
 
 export type {
     CharacterActions,
+    CharacterRequestAction,
+    CharacterSuccessAction,
+    CharacterFailureAction,
     RaMActions
 }

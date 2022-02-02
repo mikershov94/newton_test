@@ -6,6 +6,10 @@ import Card from "../card";
 import requestCharacters from "../../store/action-creators/request-characters";
 import Spinner from "../spinner";
 import ErrorMessage from "../error-message";
+import { RaMAPI } from "../../store";
+import { Page } from "../../types/api-client-types";
+import recieveCharacters from "../../store/action-creators/recieve-characters";
+import failureCharacters from "../../store/action-creators/failure-characters";
 
 const Characters = (props: CharactersProps): JSX.Element => {
     const state: CharacterState = useSelector((state: GlobalState) => state.characters);
@@ -14,7 +18,25 @@ const Characters = (props: CharactersProps): JSX.Element => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestCharacters(numPage))
+        //диспатчим редьюсеру событие начала запроса данных
+        dispatch(requestCharacters());
+
+        //запрашиваем у API данные с помощью API-клиента
+        RaMAPI.getCharactersPage(numPage)
+              .then((page: Page) => {
+                    //если промис разрешается и приходит страница с персонажами
+                    //то ждем 2000мс и диспатчим событие о завершении загрузки
+                    //в ActionCreator передаем полученную страницу
+                    setTimeout(() => {
+                        dispatch(recieveCharacters(page));
+                    }, 2000);
+              })
+              .catch((e: Error) => {
+                    //если промис разрешается с ошибкой
+                    //то диспатчим событие с неудачей
+                    console.log(e.message)
+                    dispatch(failureCharacters());  
+              })
     }, []);
 
 
