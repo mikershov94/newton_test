@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Character, CharactersProps } from "../../types/character-types";
 import { CharacterState, GlobalState } from "../../types/state-types";
@@ -7,7 +7,7 @@ import requestCharacters from "../../store/action-creators/request-characters";
 
 const Characters = (props: CharactersProps): JSX.Element => {
     const state: CharacterState = useSelector((state: GlobalState) => state.characters);
-    const [numPage, setNumPage] = useState<number>(1);
+    const numPage = 2;
 
     const dispatch = useDispatch();
 

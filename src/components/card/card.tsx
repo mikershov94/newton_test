@@ -1,17 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { CardProps } from "../../types/card-types";
-import { RaMContext } from "../app/app-context";
 import Like from "../like";
 import './card.css';
 
 const Card = (props: CardProps): JSX.Element => {
     const [isCharacterLiked, setIsCharacterLiked] = useState(false);
 
-    const {addFavorite} = useContext(RaMContext);
-
     const handleLike = (): void => {
         setIsCharacterLiked(true);
-        addFavorite(props.character)
     };
     const handleDislike = (): void => {
         setIsCharacterLiked(false)

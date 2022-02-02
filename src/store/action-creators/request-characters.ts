@@ -3,7 +3,7 @@ import { RaMAPI } from "..";
 import { CharactersActionTypes, RaMActions } from "../../types/action-types";
 
 const requestCharacters = (numPage: number) => {
-    return async (dispatch: Dispatch<RaMActions>) => {
+    return async (dispatch: Dispatch<RaMActions>): Promise<void> => {
         try {
             //диспатчим редьюсеру событие об отправке запроса на сервер
             dispatch({type: CharactersActionTypes.CHARACTERS_REQUESTED});
