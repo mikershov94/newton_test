@@ -10,7 +10,7 @@ interface CharactersSuccessAction {
 };
 interface CharactersFailureAction {
     type: string;
-    payload: string;
+    payload: null | string;
 };
 
 type CharactersAction = CharactersRequestAction |

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Page } from "../../types/api-client-types";
 import { Character, CharactersProps } from "../../types/character-types";
-import { RaMAPI } from "../app/app-context";
 import Card from "../card";
 
 const Characters = (props: CharactersProps): JSX.Element => {
