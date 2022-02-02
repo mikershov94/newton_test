@@ -6,6 +6,8 @@ import Card from "../card";
 import requestCharacters from "../../store/action-creators/request-characters";
 import Spinner from "../spinner";
 import ErrorMessage from "../error-message";
+import { RaMAPI } from "../../store";
+import { Page } from "../../types/api-client-types";
 
 const Characters = (props: CharactersProps): JSX.Element => {
     const state: CharacterState = useSelector((state: GlobalState) => state.characters);
@@ -14,7 +16,10 @@ const Characters = (props: CharactersProps): JSX.Element => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestCharacters(numPage))
+        RaMAPI.getCharactersPage(numPage)
+              .then((page: Page) => {
+                  dispatch()
+              })
     }, []);
 
 
