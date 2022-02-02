@@ -1,6 +1,9 @@
-import { CHARACTERS_FAILURE, CHARACTERS_RECEIVED, CHARACTERS_REQUESTED } from "../actions";
+import { CharacterState } from "../../types/state-types";
+import { CHARACTERS_FAILURE,
+         CHARACTERS_RECEIVED,
+         CHARACTERS_REQUESTED } from "../actions";
 
-const updateCharacters(state, action) {
+const updateCharacters(state: CharacterState, action) {
     switch (action.type) {
         case CHARACTERS_REQUESTED:
             return {};

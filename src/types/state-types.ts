@@ -1,20 +1,20 @@
 import { Character } from "./character-types";
 
-interface characterState {
+interface CharacterState {
     characters: Character[];
     loading: boolean;
     error: boolean;
 }
 
-type favoriteState = number[];
+type FavoriteState = number[];
 
-interface globalState {
-    characters: characterState;
-    favorites: favoriteState;
+interface GlobalState {
+    characters: CharacterState;
+    favorites: FavoriteState;
 }
 
 export type {
-    characterState,
-    favoriteState,
-    globalState
+    CharacterState,
+    FavoriteState,
+    GlobalState
 }
