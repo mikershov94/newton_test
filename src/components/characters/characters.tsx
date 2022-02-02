@@ -4,6 +4,7 @@ import { Character, CharactersProps } from "../../types/character-types";
 import { CharacterState, GlobalState } from "../../types/state-types";
 import Card from "../card";
 import requestCharacters from "../../store/action-creators/request-characters";
+import Spinner from "../spinner";
 
 const Characters = (props: CharactersProps): JSX.Element => {
     const state: CharacterState = useSelector((state: GlobalState) => state.characters);
@@ -18,11 +19,16 @@ const Characters = (props: CharactersProps): JSX.Element => {
 
     return(
         <div>
+            <Spinner />
+            {/*
             <div className={props.className} >
+                
+                
                 {state.characters.map((character: Character) => {
                     return <Card character={character} key={character.id} />
                 })}
             </div>
+            */}
         </div>
     );
 };

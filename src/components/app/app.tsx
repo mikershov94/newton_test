@@ -10,10 +10,12 @@ const App = (): JSX.Element => {
     return(
         <div>
             <Header />
-            <Routes>
-                <Route path="/" element={<Characters className='list' />} />
-                <Route path="/favorite" element={<Favorite className='list' />} />
-            </Routes>
+            <div className="container">
+                <Routes>
+                    <Route path="/" element={<Characters className='list' />} />
+                    <Route path="/favorite" element={<Favorite className='list' />} />
+                </Routes>
+            </div>
         </div>
     );
 }
