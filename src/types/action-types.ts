@@ -10,12 +10,13 @@ interface CharactersSuccessAction {
 };
 interface CharactersFailureAction {
     type: string;
-    payload: null | string;
 };
 
 type CharactersAction = CharactersRequestAction |
                         CharactersSuccessAction |
                         CharactersFailureAction;
+
+type RaMActions = CharactersAction;
 
 export enum CharactersActionTypes {
     CHARACTERS_REQUESTED = 'CHARACTERS_REQUESTED',
@@ -27,5 +28,6 @@ export type {
     CharactersRequestAction,
     CharactersSuccessAction,
     CharactersFailureAction,
-    CharactersAction
+    CharactersAction,
+    RaMActions
 }

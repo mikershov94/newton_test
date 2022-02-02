@@ -12,13 +12,14 @@ const requestCharacters = (numPage: number) => {
             const response = await RaMAPI.getCharactersPage(numPage);
             dispatch({type: CharactersActionTypes.CHARACTERS_RECEIVED, payload: response})
             
-        } catch (error) {
+        } catch {
             //если при запросе отловили ошибку
             //диспатчим редьюсеру событие о неудаче и передаем сообщение
             dispatch({
                 type: CharactersActionTypes.CHARACTERS_FAILURE,
-                payload: 'Нам не удалось показать персонажей. Попробуйте позже'
             })
         }
     }
 }
+
+export default requestCharacters;
