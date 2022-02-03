@@ -1,9 +1,16 @@
 import { CharacterActions, CharactersActionTypes  } from "../../types/action-types";
 import { CharacterState } from "../../types/state-types";
 
-const updateCharacters = (state: CharacterState,
-                          action: CharacterActions): CharacterState => {
-    switch (action.type) {
+const initialState: CharacterState = {
+    characters: [],
+    loading: false,
+    error: false
+}
+
+const updateCharacters = 
+        (state: CharacterState = initialState, action: CharacterActions): CharacterState => {
+    
+        switch (action.type) {
         case CharactersActionTypes.CHARACTERS_REQUESTED:
             return {
                 characters: state.characters,
