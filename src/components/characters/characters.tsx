@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Character, CharactersProps } from "../../types/character-types";
 import { CharacterState, GlobalState } from "../../types/state-types";
@@ -10,10 +10,17 @@ import { RaMAPI } from "../../store";
 import { Page } from "../../types/api-client-types";
 import recieveCharacters from "../../store/action-creators/recieve-characters";
 import failureCharacters from "../../store/action-creators/failure-characters";
+import Paginator from "../paginator";
+import './character.css';
 
 const Characters = (props: CharactersProps): JSX.Element => {
+    const pageNums: number[] = [1,2,3,4,5,6,7,8,9,10];
     const state: CharacterState = useSelector((state: GlobalState) => state.characters);
-    const numPage = 2;
+    const [numPage, setNumPage] = useState(1);
+
+    const handlePageClick = (numPage: number): void => {
+        setNumPage(numPage);
+    }
 
     const dispatch = useDispatch();
 
@@ -37,25 +44,29 @@ const Characters = (props: CharactersProps): JSX.Element => {
                     console.log(e.message)
                     dispatch(failureCharacters());  
               })
-    }, []);
+    }, [numPage]);
 
-
-    if (state.loading) {
-        return <Spinner />
-    }
-
-    if (state.error) {
-        return <ErrorMessage />
-    }
-
-    return(
-        <div>
+    let element: JSX.Element = 
             <div className={props.className} >
                 {state.characters.map((character: Character) => {
                     return <Card character={character} key={character.id} />
                 })}
-            </div>
-            
+            </div>;
+
+    if (state.loading) {
+        element =  <div className="icons-container"><Spinner /></div>
+    }
+
+    if (state.error) {
+        element =  <div className="icons-container"><ErrorMessage /></div>
+    }
+
+    return(
+        <div className="characters">
+            {element}
+            <Paginator pageNums={pageNums} 
+                       page={numPage}
+                       handlePageClick={handlePageClick} />
         </div>
     );
 };

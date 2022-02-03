@@ -1,5 +1,6 @@
 body {
     width: 100%;
+    height: 100%;
     margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -15,5 +16,4 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 670px;
 }
