@@ -33,7 +33,7 @@ const Card = (props: CardProps): JSX.Element => {
     })
 
     return(
-        <div className="card">
+        <div className={isCharacterLiked ? 'card_liked' : 'card'} >
             <img src={props.character.image} 
                  alt="картинка"
                  className="card__img"/>
