@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
+import { useDispatch } from "react-redux";
+import addFavorite from "../../store/action-creators/add-favorite";
+import deleteFavorite from "../../store/action-creators/delete-favorite";
+import { FavoriteActions } from "../../types/action-types";
 import { CardProps } from "../../types/card-types";
 import Like from "../like";
 import './card.css';
@@ -6,11 +10,16 @@ import './card.css';
 const Card = (props: CardProps): JSX.Element => {
     const [isCharacterLiked, setIsCharacterLiked] = useState(false);
 
+    const dispatch: Dispatch<FavoriteActions> = useDispatch();
+
     const handleLike = (): void => {
+        dispatch(addFavorite(props.character.id));
         setIsCharacterLiked(true);
     };
+    
     const handleDislike = (): void => {
-        setIsCharacterLiked(false)
+        dispatch(deleteFavorite(props.character.id));
+        setIsCharacterLiked(false);
     };
 
     return(
