@@ -1,9 +1,10 @@
 import { AddFavoriteAction, FavoritesActionTypes } from "../../types/action-types";
+import { Character } from "../../types/character-types";
 
-const addFavorite = (idCharacter: number): AddFavoriteAction => {
+const addFavorite = (character: Character): AddFavoriteAction => {
     return {
         type: FavoritesActionTypes.ADD_TO_FAVORITES,
-        payload: idCharacter
+        payload: character
     }
 }
 

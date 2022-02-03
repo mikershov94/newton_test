@@ -6,7 +6,7 @@ interface CharacterState {
     error: boolean;
 }
 
-type FavoriteState = number[];
+type FavoriteState = Character[];
 
 interface GlobalState {
     characters: CharacterState;

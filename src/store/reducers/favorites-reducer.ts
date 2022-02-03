@@ -1,4 +1,5 @@
 import { FavoriteActions, FavoritesActionTypes } from "../../types/action-types"
+import { Character } from "../../types/character-types";
 import { FavoriteState } from "../../types/state-types";
 
 const updateFavorites = 
@@ -10,7 +11,9 @@ const updateFavorites =
             return [...state, action.payload];
 
         case FavoritesActionTypes.DELETE_FROM_FAVORITES:
-            return state.filter((characterId: number) => characterId !== action.payload);
+            return state.filter((character: Character) => { 
+                return character.id !== action.payload.id 
+            });
 
         default:
             return state;

@@ -4,6 +4,7 @@ import addFavorite from "../../store/action-creators/add-favorite";
 import deleteFavorite from "../../store/action-creators/delete-favorite";
 import { FavoriteActions } from "../../types/action-types";
 import { CardProps } from "../../types/card-types";
+import { Character } from "../../types/character-types";
 import { FavoriteState, GlobalState } from "../../types/state-types";
 import Like from "../like";
 import './card.css';
@@ -15,18 +16,18 @@ const Card = (props: CardProps): JSX.Element => {
     const dispatch: Dispatch<FavoriteActions> = useDispatch();
 
     const handleLike = (): void => {
-        dispatch(addFavorite(props.character.id));
+        dispatch(addFavorite(props.character));
         setIsCharacterLiked(true);
     };
 
     const handleDislike = (): void => {
-        dispatch(deleteFavorite(props.character.id));
+        dispatch(deleteFavorite(props.character));
         setIsCharacterLiked(false);
     };
 
     useEffect(() => {
-        favorites.forEach((characterID: number) => {
-            if (characterID == props.character.id) {
+        favorites.forEach((character: Character) => {
+            if (character.id == props.character.id) {
                 setIsCharacterLiked(true);
             }
         })

@@ -1,9 +1,10 @@
 import { DeleteFavoriteAction, FavoritesActionTypes } from "../../types/action-types";
+import { Character } from "../../types/character-types";
 
-const deleteFavorite = (idCharacter: number): DeleteFavoriteAction => {
+const deleteFavorite = (character: Character): DeleteFavoriteAction => {
     return {
         type: FavoritesActionTypes.DELETE_FROM_FAVORITES,
-        payload: idCharacter
+        payload: character
     }
 }
 

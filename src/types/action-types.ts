@@ -1,4 +1,5 @@
 import { Page } from "./api-client-types";
+import { Character } from "./character-types";
 
 export enum CharactersActionTypes {
     CHARACTERS_REQUESTED = 'CHARACTERS_REQUESTED',
@@ -26,12 +27,12 @@ interface CharacterFailureAction {
 
 interface AddFavoriteAction {
     type: FavoritesActionTypes.ADD_TO_FAVORITES;
-    payload: number;
+    payload: Character;
 }
 
 interface DeleteFavoriteAction {
     type: FavoritesActionTypes.DELETE_FROM_FAVORITES;
-    payload: number;
+    payload: Character;
 }
 
 type CharacterActions = CharacterRequestAction |
