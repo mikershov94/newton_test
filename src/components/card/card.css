@@ -4,24 +4,15 @@
     justify-content: space-around;
     background-color: #7c7a7a;
     color: #f2f2f2;
-    width: 350px;
-    height: 200px;
+    width: 600px;
+    height: 250px;
     margin: 10px 10px;
     border-radius: 7px;
 }
 
 .card_liked {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: #7c7a7a;
-    color: #f2f2f2;
-    width: 350px;
-    height: 200px;
-    margin: 10px 10px;
     border-radius: 7px;
     border: 3px solid #A3A3CD;
-    ;
 }
 
 .card__text {
