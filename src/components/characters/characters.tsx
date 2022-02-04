@@ -54,11 +54,15 @@ const Characters = (props: CharactersProps): JSX.Element => {
             </div>;
 
     if (state.loading) {
-        element =  <div className="icons-container"><Spinner /></div>
+        element =  <div className="icons-container icons-container_height">
+                        <Spinner />
+                    </div>
     }
 
     if (state.error) {
-        element =  <div className="icons-container"><ErrorMessage /></div>
+        element =  <div className="icons-container icons-container_height">
+                        <ErrorMessage />
+                    </div>
     }
 
     return(
