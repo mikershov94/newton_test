@@ -21,9 +21,11 @@ http://ramapplic.herokuapp.com/
 
 Установка и запуск
 =======================================================================================
-  ```$~ git clone https://github.com/mikershov94/newton_test
+  ```
+  $~ git clone https://github.com/mikershov94/newton_test
   $~ npm install
-  $~ npm start```
+  $~ npm start
+  ```
 
 Структура проекта
 =======================================================================================
