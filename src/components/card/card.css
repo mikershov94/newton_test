@@ -4,7 +4,7 @@
     justify-content: space-around;
     background-color: #7c7a7a;
     color: #f2f2f2;
-    width: 600px;
+    width: 550px;
     height: 250px;
     margin: 10px 10px;
     border-radius: 7px;
@@ -16,16 +16,38 @@
 }
 
 .card__text {
-    height: 170px;
-    width: 100px;
+    height: 160px;
+    width: 240px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
+.card__infoblock {
+    display: flex;
+    height: 30px;
+    border-bottom: 0.5px solid #c6c6c6;
+}
+
+.card__label {
+    font-size: 13pt;
+    font-weight: bold;
+    width: 70px;
+}
+
+.card__info {
+    padding: 2.1px 0 2px 0;
+
+}
+
 .card__img {
     position: relative;
     left: -5px;
-    height: 150px;
+    height: 180px;
     border-radius: 7px;
+}
+
+.card__like {
+    align-self: center;
+    height: 5px;
 }

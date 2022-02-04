@@ -39,10 +39,19 @@ const Card = (props: CardProps): JSX.Element => {
                  alt="картинка"
                  className="card__img"/>
             <div className="card__text">
-                <div>{props.character.name}</div>
-                <div>{props.character.gender}</div>
-                <div>{props.character.species}</div>
-                <div>
+                <div className="card__infoblock">
+                    <div className="card__label">Имя:</div>
+                    <div className="card__info">{props.character.name}</div>
+                </div>
+                <div className="card__infoblock">
+                    <div className="card__label">Пол:</div>
+                    <div className="card__info">{props.character.gender}</div>
+                </div>
+                <div className="card__infoblock">
+                    <div className="card__label">Раса:</div>
+                    <div className="card__info">{props.character.species}</div>
+                </div>
+                <div className="card__like">
                     <Like isLiked={isCharacterLiked}
                           handleLike={handleLike}
                           handleDislike={handleDislike} /> 
